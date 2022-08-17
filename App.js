@@ -1,5 +1,5 @@
 import { Button, Text, View, StyleSheet } from "react-native";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Flyy from 'react-native-flyy';
@@ -30,10 +30,12 @@ async function requestUserPermission() {
 }
 
 const MyStack = () => {
-  useEffect(()=>{
-    Flyy.setPackageName('com.example.flyyxintegration');
-    Flyy.initSDK('35299df860c15c0449c8', Flyy.STAGE);
-    Flyy.setUser('react_user_02');
+  useEffect(() => {
+    //TODO Config 1: Paste Package name from "Settings > Connect SDK" in Dashboard.
+    Flyy.setPackageName('');
+    //TODO Config 2: Paste Partner Id from "Settings > SDK Keys" in Dashboard.
+    Flyy.initSDK('', Flyy.STAGE);
+    Flyy.setUser('test_user_1');
     const unsubscribe = messaging().onMessage(async remoteMessage => {
       if (
         remoteMessage != null &&
@@ -75,7 +77,7 @@ const HomeScreen = ({ navigation }) => {
         title="Offers"
         style={styles.button}
         onPress={() => {
-          Flyy.openOffersScreen();
+          //TODO Step 1: Navigate to Offers Page
         }}
       />
       <View
@@ -92,15 +94,15 @@ const HomeScreen = ({ navigation }) => {
 
 const CartScreen = ({ navigation }) => {
   return (
-  <View
-    style={styles.container}>
-    <Button
-      title="Checkout"
-      onPress={() => {
-        Flyy.sendEvent('purchase', 'true');
-       }}
-    />
-  </View>
+    <View
+      style={styles.container}>
+      <Button
+        title="Checkout"
+        onPress={() => {
+          //TODO Step 2: Send purchase Event
+        }}
+      />
+    </View>
   );
 }
 
